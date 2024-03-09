@@ -1,36 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data.SqlClient;
+using System.Web.Mvc;
 using Myhotel.Models;
 
 namespace Myhotel.Controllers
 {
     public class CheckoutController : Controller
     {
+        // Lista per memorizzare le prenotazioni (condivisa tra le richieste)
+        private List<PrenotazioneViewModel> prenotazioni;
+
         [Authorize]
         // GET: Checkout
         public ActionResult Index()
         {
-            return View();
-        }
+            // Assicurati che la lista sia inizializzata prima di utilizzarla
+            if (prenotazioni == null)
+            {
+                prenotazioni = new List<PrenotazioneViewModel>();
+            }
 
-        [HttpPost]
-        public ActionResult OttieniInformazioniConPrezzoTotale()
-        {
+            // Connessione alla stringa del database
             string connString = ConfigurationManager.ConnectionStrings["MYDATABASE"].ToString();
+
+            // Imposta il prezzo base
             decimal prezzoBase = 100;
 
-            // Lista per memorizzare le prenotazioni
-            var prenotazioni = new List<PrenotazioneViewModel>();
-
+            // Utilizza una connessione SQL per ottenere i dati necessari dal database
             using (SqlConnection connection = new SqlConnection(connString))
             {
+                // Apri la connessione
                 connection.Open();
 
+                // Query SQL per ottenere i dati necessari
                 string query = "SELECT " +
                                 "Clienti.Nome, " +
                                 "Clienti.Cognome, " +
@@ -50,10 +54,13 @@ namespace Myhotel.Controllers
                                 "JOIN Camere ON Prenotazioni.NumeroCamera = Camere.Numero " +
                                 "LEFT JOIN ServiziAggiuntivi ON Prenotazioni.ID = ServiziAggiuntivi.IDPrenotazione";
 
+                // Utilizza un comando SQL per eseguire la query
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    // Utilizza un lettore SQL per leggere i risultati
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
+                        // Itera attraverso i risultati
                         while (reader.Read())
                         {
                             // Ottieni i dati necessari dal lettore SqlDataReader
@@ -63,9 +70,9 @@ namespace Myhotel.Controllers
                             DateTime dataInizio = Convert.ToDateTime(reader["DataInizio"]);
                             DateTime dataFine = Convert.ToDateTime(reader["DataFine"]);
                             decimal caparra = Convert.ToDecimal(reader["CaparraConfirmatoria"]);
-                            bool mezzaPensione = (bool)reader["MezzaPensione"];
-                            bool pensioneCompleta = (bool)reader["PensioneCompleta"];
-                            bool pernottamentoColazione = (bool)reader["PernottamentoColazione"];
+                            bool mezzaPensione = Convert.ToBoolean(reader["MezzaPensione"]);
+                            bool pensioneCompleta = Convert.ToBoolean(reader["PensioneCompleta"]);
+                            bool pernottamentoColazione = Convert.ToBoolean(reader["PernottamentoColazione"]);
                             int quantitaServizio = Convert.ToInt32(reader["Quantita"]);
                             decimal prezzoServizioAggiuntivo = Convert.ToDecimal(reader["Prezzo"]);
 
@@ -106,8 +113,7 @@ namespace Myhotel.Controllers
             }
 
             // Passaggio della lista di prenotazioni alla vista
-            return View("Index", prenotazioni);
+            return View(prenotazioni);
         }
     }
-
 }

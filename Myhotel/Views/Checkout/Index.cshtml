@@ -23,7 +23,7 @@
     </tr>
     @if (Model != null)
     {
-        @foreach (var prenotazione in Model)
+        foreach (Myhotel.Models.PrenotazioneViewModel prenotazione in Model)
         {
             <tr>
                 <td>@prenotazione.Nome</td>

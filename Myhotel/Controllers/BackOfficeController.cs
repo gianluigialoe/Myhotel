@@ -338,7 +338,7 @@ namespace Myhotel.Controllers
                         }
 
                         scope.Complete(); // Completa la transazione
-                        return RedirectToAction("Index"); // Ridireziona alla pagina desiderata
+                        return RedirectToAction("Index", "Checkout");
                     }
                     catch (Exception ex)
                     {
