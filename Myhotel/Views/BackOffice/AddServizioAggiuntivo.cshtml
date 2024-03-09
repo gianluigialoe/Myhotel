@@ -1,0 +1,59 @@
+﻿@model Myhotel.Models.ServizioAggiuntivo
+
+@{
+    ViewBag.Title = "Aggiungi Servizio Aggiuntivo";
+}
+
+<h2>Aggiungi Servizio Aggiuntivo</h2>
+
+@using (Html.BeginForm("AddServizioAggiuntivo", "BackOffice", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IDPrenotazione, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.IDPrenotazione, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IDPrenotazione)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataServizio, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.DataServizio, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+            @Html.ValidationMessageFor(model => model.DataServizio)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantita, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Quantita, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Quantita)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Prezzo, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Prezzo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Prezzo)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descrizione, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Descrizione, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Descrizione)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-primary">Aggiungi Servizio Aggiuntivo</button>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,85 @@
+﻿@model Myhotel.Models.Cliente
+
+
+
+@{
+    ViewBag.Title = "Aggiungi Cliente";
+}
+
+<h2>Aggiungi Cliente</h2>
+
+@using (Html.BeginForm("AddCliente", "BackOffice", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CodiceFiscale, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.CodiceFiscale, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CodiceFiscale)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cognome, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Cognome, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Cognome)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Nome)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Citta, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Citta, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Citta)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Provincia, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Provincia, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Provincia)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Telefono, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Telefono)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cellulare, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Cellulare, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Cellulare)
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-primary">Aggiungi Cliente</button>
+        </div>
+    </div>
+}

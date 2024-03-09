@@ -1,0 +1,114 @@
+﻿@model Myhotel.Models.Prenotazione
+
+@{
+    ViewBag.Title = "Aggiungi Prenotazione";
+}
+
+<h2>Aggiungi Prenotazione</h2>
+
+@using (Html.BeginForm("AddPrenotazione", "BackOffice", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CodiceFiscaleCliente, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.CodiceFiscaleCliente, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CodiceFiscaleCliente)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumeroCamera, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.NumeroCamera, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.NumeroCamera)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataPrenotazione, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.DataPrenotazione, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+            @Html.ValidationMessageFor(model => model.DataPrenotazione)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumeroProgressivoAnno, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.NumeroProgressivoAnno, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.NumeroProgressivoAnno)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Anno, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Anno, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Anno)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataInizio, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.DataInizio, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+            @Html.ValidationMessageFor(model => model.DataInizio)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataFine, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.DataFine, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+            @Html.ValidationMessageFor(model => model.DataFine)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CaparraConfirmatoria, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.CaparraConfirmatoria, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CaparraConfirmatoria)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TariffaApplicata, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.TariffaApplicata, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TariffaApplicata)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MezzaPensione, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.MezzaPensione)
+            @Html.ValidationMessageFor(model => model.MezzaPensione)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PensioneCompleta, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.PensioneCompleta)
+            @Html.ValidationMessageFor(model => model.PensioneCompleta)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PernottamentoColazione, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.PernottamentoColazione)
+            @Html.ValidationMessageFor(model => model.PernottamentoColazione)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-primary">Aggiungi Prenotazione</button>
+        </div>
+    </div>
+}

@@ -1,0 +1,42 @@
+﻿@model Myhotel.Models.Camera
+
+@{
+    ViewBag.Title = "Aggiungi Camera";
+}
+
+<h2>Aggiungi Camera</h2>
+
+@using (Html.BeginForm("AddCamera", "BackOffice", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Numero, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Numero, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Numero)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descrizione, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Descrizione, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Descrizione)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Tipologia, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Tipologia, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Tipologia)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-primary">Aggiungi Camera</button>
+        </div>
+    </div>
+}

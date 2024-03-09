@@ -1,0 +1,63 @@
+﻿@model List<Myhotel.Models.Prenotazione>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<H1>  BENVENUTO ADMIM: @ViewBag.DipendenteId </H1>
+
+<h2 class="text-center">Lista Prenotazioni</h2>
+
+<div class="container mt-5">
+    @if (Model.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Codice Fiscale Cliente</th>
+                    <th>Numero Camera</th>
+                    <th>Data Prenotazione</th>
+                    <th>Numero Progressivo Anno</th>
+                    <th>Anno</th>
+                    <th>Data Inizio</th>
+                    <th>Data Fine</th>
+                    <th>Caparra Confirmatoria</th>
+                    <th>Tariffa Applicata</th>
+                    <th>Mezza Pensione</th>
+                    <th>Pensione Completa</th>
+                    <th>Pernottamento Colazione</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var prenotazione in Model)
+                {
+                    <tr>
+                        <td>@prenotazione.ID</td>
+                        <td>@prenotazione.CodiceFiscaleCliente</td>
+                        <td>@prenotazione.NumeroCamera</td>
+                        <td>@prenotazione.DataPrenotazione.ToString("yyyy-MM-dd")</td>
+                        <td>@prenotazione.NumeroProgressivoAnno</td>
+                        <td>@prenotazione.Anno</td>
+                        <td>@prenotazione.DataInizio.ToString("yyyy-MM-dd")</td>
+                        <td>@prenotazione.DataFine.ToString("yyyy-MM-dd")</td>
+                        <td>@prenotazione.CaparraConfirmatoria</td>
+                        <td>@prenotazione.TariffaApplicata</td>
+                        <td>@(prenotazione.MezzaPensione ? "Sì" : "No")</td>
+                        <td>@(prenotazione.PensioneCompleta ? "Sì" : "No")</td>
+                        <td>@(prenotazione.PernottamentoColazione ? "Sì" : "No")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Nessuna prenotazione trovata.</p>
+    }
+</div>
+
+<div class="container mt-3">
+    <a href="@Url.Action("addCliente", "BackOffice")" class="btn btn-primary">Aggiungi Cliente</a>
+</div>

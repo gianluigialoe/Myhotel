@@ -1,0 +1,48 @@
+﻿@model List<Myhotel.Models.PrenotazioneViewModel>
+
+@{
+    ViewBag.Title = "OttieniInformazioniConPrezzoTotale";
+}
+
+<h2>OttieniInformazioniConPrezzoTotale</h2>
+
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Numero Camera</th>
+        <th>Data Inizio</th>
+        <th>Data Fine</th>
+        <th>Caparra</th>
+        <th>Mezza Pensione</th>
+        <th>Pensione Completa</th>
+        <th>Pernottamento con Colazione</th>
+        <th>Quantità Servizio</th>
+        <th>Prezzo Servizio Aggiuntivo</th>
+        <th>Prezzo Totale</th>
+    </tr>
+    @if (Model != null)
+    {
+        @foreach (var prenotazione in Model)
+        {
+            <tr>
+                <td>@prenotazione.Nome</td>
+                <td>@prenotazione.Cognome</td>
+                <td>@prenotazione.NumeroCamera</td>
+                <td>@prenotazione.DataInizio.ToShortDateString()</td>
+                <td>@prenotazione.DataFine.ToShortDateString()</td>
+                <td>@prenotazione.Caparra</td>
+                <td>@(prenotazione.MezzaPensione ? "Sì" : "No")</td>
+                <td>@(prenotazione.PensioneCompleta ? "Sì" : "No")</td>
+                <td>@(prenotazione.PernottamentoColazione ? "Sì" : "No")</td>
+                <td>@prenotazione.QuantitaServizio</td>
+                <td>@prenotazione.PrezzoServizioAggiuntivo</td>
+                <td>@prenotazione.PrezzoTotale</td>
+            </tr>
+        }
+    }
+    else
+    {
+        <p>Nessuna prenotazione trovata</p>
+    }
+</table>
